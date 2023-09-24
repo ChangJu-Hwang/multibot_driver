@@ -55,6 +55,9 @@ void ISR_M2::FakeOdom::init_parameters()
                            frame_id_of_odometry_, std::string("odom"));
     this->get_parameter_or("odometry.child_frame_id",
                            child_frame_id_of_odometry_, std::string("base_footprint"));
+    
+    this->get_parameter_or("use_gazebo_odom",
+                            use_gazebo_odom_, false);
 }
 
 void ISR_M2::FakeOdom::init_varibales()
@@ -114,9 +117,6 @@ void ISR_M2::FakeOdom::calculate_odometry(const rclcpp::Duration &_duration)
         robot_vel_[1] = 0.0;
         robot_vel_[2] = delta_theta / step_time;
     }
-
-    std::cout << robot_vel_[0] << " / "
-              << robot_vel_[2] << std::endl;
 }
 
 void ISR_M2::FakeOdom::publish(const rclcpp::Time &_now)
@@ -178,7 +178,9 @@ void ISR_M2::FakeOdom::publish(const rclcpp::Time &_now)
         odom_tf_msg->transforms.push_back(odom_tf);
     }
 
-    odom_pub_->publish(std::move(odom_msg));
+    if (not(use_gazebo_odom_))
+        odom_pub_->publish(std::move(odom_msg));
+        
     joint_states_pub_->publish(std::move(joint_states_msg));
     tf_pub_->publish(std::move(odom_tf_msg));
 }

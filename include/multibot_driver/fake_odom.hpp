@@ -59,6 +59,8 @@ namespace ISR_M2
 
         rclcpp::Time prev_cmd_vel_time_;
         double cmd_vel_timeout_;
+
+        bool use_gazebo_odom_;
     
     public:
         FakeOdom();

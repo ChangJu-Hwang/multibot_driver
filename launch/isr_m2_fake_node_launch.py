@@ -49,6 +49,7 @@ def generate_launch_description():
         parameters=[
             os.path.join(multibot_driver_dir, 'params', 'ISR_M2.yaml'),
             {'namespace': robot_name,
+             'use_gazebo_odom': True,
              'use_sim_time': True}
         ],
         output='screen'
