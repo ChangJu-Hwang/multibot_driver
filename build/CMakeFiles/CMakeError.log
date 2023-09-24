@@ -1,0 +1,106 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/home/changju/.vscode/extensions/powertech.powercpp-23.2.24/thirdparty/bin/ninja cmTC_37550 && [1/2] Building C object CMakeFiles/cmTC_37550.dir/src.c.o
+[2/2] Linking C executable cmTC_37550
+FAILED: cmTC_37550 
+: && /usr/bin/clang -DCMAKE_HAVE_LIBC_PTHREAD   CMakeFiles/cmTC_37550.dir/src.c.o  -o cmTC_37550   && :
+/usr/bin/ld: CMakeFiles/cmTC_37550.dir/src.c.o: in function `main':
+src.c:(.text+0x35): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x41): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x53): undefined reference to `pthread_join'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/home/changju/.vscode/extensions/powertech.powercpp-23.2.24/thirdparty/bin/ninja cmTC_de603 && [1/2] Building C object CMakeFiles/cmTC_de603.dir/CheckFunctionExists.c.o
+[2/2] Linking C executable cmTC_de603
+FAILED: cmTC_de603 
+: && /usr/bin/clang -DCHECK_FUNCTION_EXISTS=pthread_create   CMakeFiles/cmTC_de603.dir/CheckFunctionExists.c.o  -o cmTC_de603  -lpthreads && :
+/usr/bin/ld: cannot find -lpthreads
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+ninja: build stopped: subcommand failed.
+
+
+
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_82f47/fast && /usr/bin/make -f CMakeFiles/cmTC_82f47.dir/build.make CMakeFiles/cmTC_82f47.dir/build
+make[1]: Entering directory '/home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_82f47.dir/src.c.o
+/usr/bin/gcc-8   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_82f47.dir/src.c.o   -c /home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_82f47
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_82f47.dir/link.txt --verbose=1
+/usr/bin/gcc-8  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_82f47.dir/src.c.o  -o cmTC_82f47 
+/usr/bin/ld: CMakeFiles/cmTC_82f47.dir/src.c.o: in function `main':
+src.c:(.text+0x46): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_82f47.dir/build.make:87: cmTC_82f47] Error 1
+make[1]: Leaving directory '/home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_82f47/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_eefcb/fast && /usr/bin/make -f CMakeFiles/cmTC_eefcb.dir/build.make CMakeFiles/cmTC_eefcb.dir/build
+make[1]: Entering directory '/home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_eefcb.dir/CheckFunctionExists.c.o
+/usr/bin/gcc-8   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_eefcb.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_eefcb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eefcb.dir/link.txt --verbose=1
+/usr/bin/gcc-8  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_eefcb.dir/CheckFunctionExists.c.o  -o cmTC_eefcb  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_eefcb.dir/build.make:87: cmTC_eefcb] Error 1
+make[1]: Leaving directory '/home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_eefcb/fast] Error 2
+
+
+
