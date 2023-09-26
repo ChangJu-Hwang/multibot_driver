@@ -37,23 +37,27 @@ void ISR_M2::FakeOdom::update_callback()
 
 void ISR_M2::FakeOdom::init_parameters()
 {
-    this->declare_parameter("wheels.separation");
-    this->declare_parameter("wheels.radius");
+    std::string type;
+    this->declare_parameter("type");
+    this->get_parameter("type", type);
+
+    this->declare_parameter(type + ".wheels.separation");
+    this->declare_parameter(type + ".wheels.radius");
 
     this->declare_parameter("namespace");
-    this->declare_parameter("odometry.frame_id");
-    this->declare_parameter("odometry.child_frame_id");
+    this->declare_parameter(type + ".odometry.frame_id");
+    this->declare_parameter(type + ".odometry.child_frame_id");
 
-    this->get_parameter_or("wheels.separation",
+    this->get_parameter_or(type + ".wheels.separation",
                            wheel_seperation_, 0.0);
-    this->get_parameter_or("wheels.radius",
+    this->get_parameter_or(type + ".wheels.radius",
                            wheel_radius_, 0.0);
 
     this->get_parameter_or("namespace",
                            namespace_, std::string());
-    this->get_parameter_or("odometry.frame_id",
+    this->get_parameter_or(type + ".odometry.frame_id",
                            frame_id_of_odometry_, std::string("odom"));
-    this->get_parameter_or("odometry.child_frame_id",
+    this->get_parameter_or(type + ".odometry.child_frame_id",
                            child_frame_id_of_odometry_, std::string("base_footprint"));
     
     this->get_parameter_or("use_gazebo_odom",

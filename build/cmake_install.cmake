@@ -61,7 +61,6 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/multibot_driver" TYPE DIRECTORY FILES
     "/home/changju/multibot_ws/src/multibot_driver/launch"
     "/home/changju/multibot_ws/src/multibot_driver/models"
-    "/home/changju/multibot_ws/src/multibot_driver/params"
     )
 endif()
 

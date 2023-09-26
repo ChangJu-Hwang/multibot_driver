@@ -15,6 +15,8 @@ def generate_launch_description():
     xacro = os.path.join(multibot_driver_dir, 'models', 'ISR_M2', 'model.xacro')
 
     robot_name = LaunchConfiguration("robot_name")
+    robot_type = LaunchConfiguration("robot_type")
+    robot_config = LaunchConfiguration("robot_config")
 
     frame_prefix = LaunchConfiguration("frame_prefix")
     odom_frame = LaunchConfiguration("odom_frame")
@@ -47,8 +49,9 @@ def generate_launch_description():
         executable='ISR_M2_Fake_Node',
         name='ISR_M2_Fake_Node',
         parameters=[
-            os.path.join(multibot_driver_dir, 'params', 'ISR_M2.yaml'),
+            robot_config,
             {'namespace': robot_name,
+             'type': robot_type,
              'use_gazebo_odom': True,
              'use_sim_time': True}
         ],
