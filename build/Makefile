@@ -68,18 +68,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -135,6 +123,18 @@ test/fast: test
 
 .PHONY : test/fast
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles /home/changju/multibot_ws/src/multibot_driver/build/CMakeFiles/progress.marks
@@ -166,6 +166,19 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named ISR_M2_Node
+
+# Build rule for target.
+ISR_M2_Node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ISR_M2_Node
+.PHONY : ISR_M2_Node
+
+# fast build rule for target.
+ISR_M2_Node/fast:
+	$(MAKE) -f CMakeFiles/ISR_M2_Node.dir/build.make CMakeFiles/ISR_M2_Node.dir/build
+.PHONY : ISR_M2_Node/fast
 
 #=============================================================================
 # Target rules for targets named ISR_M2_Fake_Node
@@ -206,59 +219,113 @@ uninstall/fast:
 	$(MAKE) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
 
-src/fake_node.o: src/fake_node.cpp.o
+src/driver/driver_node.o: src/driver/driver_node.cpp.o
 
-.PHONY : src/fake_node.o
-
-# target to build an object file
-src/fake_node.cpp.o:
-	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_node.cpp.o
-.PHONY : src/fake_node.cpp.o
-
-src/fake_node.i: src/fake_node.cpp.i
-
-.PHONY : src/fake_node.i
-
-# target to preprocess a source file
-src/fake_node.cpp.i:
-	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_node.cpp.i
-.PHONY : src/fake_node.cpp.i
-
-src/fake_node.s: src/fake_node.cpp.s
-
-.PHONY : src/fake_node.s
-
-# target to generate assembly for a file
-src/fake_node.cpp.s:
-	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_node.cpp.s
-.PHONY : src/fake_node.cpp.s
-
-src/fake_odom.o: src/fake_odom.cpp.o
-
-.PHONY : src/fake_odom.o
+.PHONY : src/driver/driver_node.o
 
 # target to build an object file
-src/fake_odom.cpp.o:
-	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_odom.cpp.o
-.PHONY : src/fake_odom.cpp.o
+src/driver/driver_node.cpp.o:
+	$(MAKE) -f CMakeFiles/ISR_M2_Node.dir/build.make CMakeFiles/ISR_M2_Node.dir/src/driver/driver_node.cpp.o
+.PHONY : src/driver/driver_node.cpp.o
 
-src/fake_odom.i: src/fake_odom.cpp.i
+src/driver/driver_node.i: src/driver/driver_node.cpp.i
 
-.PHONY : src/fake_odom.i
+.PHONY : src/driver/driver_node.i
 
 # target to preprocess a source file
-src/fake_odom.cpp.i:
-	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_odom.cpp.i
-.PHONY : src/fake_odom.cpp.i
+src/driver/driver_node.cpp.i:
+	$(MAKE) -f CMakeFiles/ISR_M2_Node.dir/build.make CMakeFiles/ISR_M2_Node.dir/src/driver/driver_node.cpp.i
+.PHONY : src/driver/driver_node.cpp.i
 
-src/fake_odom.s: src/fake_odom.cpp.s
+src/driver/driver_node.s: src/driver/driver_node.cpp.s
 
-.PHONY : src/fake_odom.s
+.PHONY : src/driver/driver_node.s
 
 # target to generate assembly for a file
-src/fake_odom.cpp.s:
-	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_odom.cpp.s
-.PHONY : src/fake_odom.cpp.s
+src/driver/driver_node.cpp.s:
+	$(MAKE) -f CMakeFiles/ISR_M2_Node.dir/build.make CMakeFiles/ISR_M2_Node.dir/src/driver/driver_node.cpp.s
+.PHONY : src/driver/driver_node.cpp.s
+
+src/driver/isr_m2.o: src/driver/isr_m2.cpp.o
+
+.PHONY : src/driver/isr_m2.o
+
+# target to build an object file
+src/driver/isr_m2.cpp.o:
+	$(MAKE) -f CMakeFiles/ISR_M2_Node.dir/build.make CMakeFiles/ISR_M2_Node.dir/src/driver/isr_m2.cpp.o
+.PHONY : src/driver/isr_m2.cpp.o
+
+src/driver/isr_m2.i: src/driver/isr_m2.cpp.i
+
+.PHONY : src/driver/isr_m2.i
+
+# target to preprocess a source file
+src/driver/isr_m2.cpp.i:
+	$(MAKE) -f CMakeFiles/ISR_M2_Node.dir/build.make CMakeFiles/ISR_M2_Node.dir/src/driver/isr_m2.cpp.i
+.PHONY : src/driver/isr_m2.cpp.i
+
+src/driver/isr_m2.s: src/driver/isr_m2.cpp.s
+
+.PHONY : src/driver/isr_m2.s
+
+# target to generate assembly for a file
+src/driver/isr_m2.cpp.s:
+	$(MAKE) -f CMakeFiles/ISR_M2_Node.dir/build.make CMakeFiles/ISR_M2_Node.dir/src/driver/isr_m2.cpp.s
+.PHONY : src/driver/isr_m2.cpp.s
+
+src/fake_driver/fake_node.o: src/fake_driver/fake_node.cpp.o
+
+.PHONY : src/fake_driver/fake_node.o
+
+# target to build an object file
+src/fake_driver/fake_node.cpp.o:
+	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_driver/fake_node.cpp.o
+.PHONY : src/fake_driver/fake_node.cpp.o
+
+src/fake_driver/fake_node.i: src/fake_driver/fake_node.cpp.i
+
+.PHONY : src/fake_driver/fake_node.i
+
+# target to preprocess a source file
+src/fake_driver/fake_node.cpp.i:
+	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_driver/fake_node.cpp.i
+.PHONY : src/fake_driver/fake_node.cpp.i
+
+src/fake_driver/fake_node.s: src/fake_driver/fake_node.cpp.s
+
+.PHONY : src/fake_driver/fake_node.s
+
+# target to generate assembly for a file
+src/fake_driver/fake_node.cpp.s:
+	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_driver/fake_node.cpp.s
+.PHONY : src/fake_driver/fake_node.cpp.s
+
+src/fake_driver/fake_odom.o: src/fake_driver/fake_odom.cpp.o
+
+.PHONY : src/fake_driver/fake_odom.o
+
+# target to build an object file
+src/fake_driver/fake_odom.cpp.o:
+	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_driver/fake_odom.cpp.o
+.PHONY : src/fake_driver/fake_odom.cpp.o
+
+src/fake_driver/fake_odom.i: src/fake_driver/fake_odom.cpp.i
+
+.PHONY : src/fake_driver/fake_odom.i
+
+# target to preprocess a source file
+src/fake_driver/fake_odom.cpp.i:
+	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_driver/fake_odom.cpp.i
+.PHONY : src/fake_driver/fake_odom.cpp.i
+
+src/fake_driver/fake_odom.s: src/fake_driver/fake_odom.cpp.s
+
+.PHONY : src/fake_driver/fake_odom.s
+
+# target to generate assembly for a file
+src/fake_driver/fake_odom.cpp.s:
+	$(MAKE) -f CMakeFiles/ISR_M2_Fake_Node.dir/build.make CMakeFiles/ISR_M2_Fake_Node.dir/src/fake_driver/fake_odom.cpp.s
+.PHONY : src/fake_driver/fake_odom.cpp.s
 
 # Help Target
 help:
@@ -267,21 +334,28 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... install/local"
+	@echo "... ISR_M2_Node"
 	@echo "... ISR_M2_Fake_Node"
 	@echo "... multibot_driver_uninstall"
 	@echo "... uninstall"
-	@echo "... src/fake_node.o"
-	@echo "... src/fake_node.i"
-	@echo "... src/fake_node.s"
-	@echo "... src/fake_odom.o"
-	@echo "... src/fake_odom.i"
-	@echo "... src/fake_odom.s"
+	@echo "... src/driver/driver_node.o"
+	@echo "... src/driver/driver_node.i"
+	@echo "... src/driver/driver_node.s"
+	@echo "... src/driver/isr_m2.o"
+	@echo "... src/driver/isr_m2.i"
+	@echo "... src/driver/isr_m2.s"
+	@echo "... src/fake_driver/fake_node.o"
+	@echo "... src/fake_driver/fake_node.i"
+	@echo "... src/fake_driver/fake_node.s"
+	@echo "... src/fake_driver/fake_odom.o"
+	@echo "... src/fake_driver/fake_odom.i"
+	@echo "... src/fake_driver/fake_odom.s"
 .PHONY : help
 
 

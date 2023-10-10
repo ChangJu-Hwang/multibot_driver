@@ -28,7 +28,11 @@ find_package(rclpy REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 find_package(tf2_msgs REQUIRED)
+find_package(multibot_ros2_interface REQUIRED)
 
 find_package(gazebo_ros REQUIRED)
 
@@ -39,7 +43,7 @@ include_directories(
   include
 )
 
-# ISR_M2_fake_node
+# ISR_M2_Fake_Node
 set(ISR_M2_FAKE_NODE_DEPENDENCIES
   "rclcpp"
   "rclpy"
@@ -50,16 +54,39 @@ set(ISR_M2_FAKE_NODE_DEPENDENCIES
 )
 
 set(ISR_M2_FAKE_NODE_EXEC_NAME "ISR_M2_Fake_Node")
-file(GLOB DRIVER_SOURCES "src/*.cpp")
-add_executable(${ISR_M2_FAKE_NODE_EXEC_NAME} ${DRIVER_SOURCES})
+file(GLOB FAKE_DRIVER_SOURCES "src/fake_driver/*.cpp")
+add_executable(${ISR_M2_FAKE_NODE_EXEC_NAME} ${FAKE_DRIVER_SOURCES})
 
 ament_target_dependencies(${ISR_M2_FAKE_NODE_EXEC_NAME} ${ISR_M2_FAKE_NODE_DEPENDENCIES})
+
+# ISR_M2 node
+set(ISR_M2_NODE_DEPENDENCIES
+  "rclcpp"
+  "tf2"
+  "tf2_ros"
+  "geometry_msgs"
+  "nav_msgs"
+  "multibot_ros2_interface"
+)
+
+set(ISR_M2_NODE_EXEC_NAME "ISR_M2_Node")
+file(GLOB DRIVER_SOURCES "src/driver/*.cpp")
+add_executable(${ISR_M2_NODE_EXEC_NAME} ${DRIVER_SOURCES})
+
+ament_target_dependencies(${ISR_M2_NODE_EXEC_NAME} ${ISR_M2_NODE_DEPENDENCIES})
 
 ################################################################################
 # Install
 ################################################################################
+# ISR_M2_Fake_Node
 install(TARGETS
   ${ISR_M2_FAKE_NODE_EXEC_NAME}
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# ISR_M2_Node
+install(TARGETS
+  ${ISR_M2_NODE_EXEC_NAME}
   DESTINATION lib/${PROJECT_NAME}
 )
 

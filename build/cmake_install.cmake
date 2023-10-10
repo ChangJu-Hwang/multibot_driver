@@ -58,10 +58,29 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/multibot_driver/ISR_M2_Node" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/multibot_driver/ISR_M2_Node")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/multibot_driver/ISR_M2_Node"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/multibot_driver" TYPE EXECUTABLE FILES "/home/changju/multibot_ws/src/multibot_driver/build/ISR_M2_Node")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/multibot_driver/ISR_M2_Node" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/multibot_driver/ISR_M2_Node")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/multibot_driver/ISR_M2_Node"
+         OLD_RPATH "/opt/ros/foxy/lib:/home/changju/multibot_ws/install/multibot_ros2_interface/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/multibot_driver/ISR_M2_Node")
+    endif()
+  endif()
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/multibot_driver" TYPE DIRECTORY FILES
     "/home/changju/multibot_ws/src/multibot_driver/launch"
     "/home/changju/multibot_ws/src/multibot_driver/models"
-    "/home/changju/multibot_ws/src/multibot_driver/params"
     )
 endif()
 

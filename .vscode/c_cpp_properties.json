@@ -1,25 +1,22 @@
 {
-  "configurations": [
-    {
-      "browse": {
-        "databaseFilename": "${default}",
-        "limitSymbolsToIncludedHeaders": false
-      },
-      "includePath": [
-        "/home/changju/multibot_ws/install/multibot_util/include/**",
-        "/home/changju/multibot_ws/install/multibot_ros2_interface/include/**",
-        "/opt/ros/foxy/include/**",
-        "/home/changju/multibot_ws/src/multibot_driver/include/**",
-        "/home/changju/multibot_ws/src/multibot_robot/include/**",
-        "/home/changju/multibot_ws/src/multibot_server/include/**",
-        "/home/changju/multibot_ws/src/multibot_util/include/**",
-      ],
-      "name": "ROS",
-      "intelliSenseMode": "gcc-x64",
-      "compilerPath": "/usr/bin/gcc",
-      "cStandard": "gnu11",
-      "cppStandard": "c++14"
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "${default}",
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "includePath": [
+                "/home/changju/multibot_ws/install/multibot_util/include/**",
+                "/home/changju/multibot_ws/install/multibot_ros2_interface/include/**",
+                "/opt/ros/foxy/include/**",
+                "${workspaceFolder}/include"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++20"
+        }
+    ],
+    "version": 4
 }
