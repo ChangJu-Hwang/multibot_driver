@@ -17,7 +17,8 @@
 					[
 						0,
 						1,
-						2
+						2,
+						3
 					]
 				}
 			],
@@ -34,7 +35,8 @@
 					[
 						0,
 						1,
-						2
+						2,
+						3
 					]
 				}
 			],
@@ -43,8 +45,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "ISR_M2_Fake_Node::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ISR_M2_Fake_Node-Debug-78340dacb54fc64d5a32.json",
+					"jsonFile" : "target-ISR_M2_Fake_Node-Debug-296ee2f1baa7fe68fe6a.json",
 					"name" : "ISR_M2_Fake_Node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ISR_M2_Node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ISR_M2_Node-Debug-c1a5fa56a319d55ccbef.json",
+					"name" : "ISR_M2_Node",
 					"projectIndex" : 0
 				},
 				{

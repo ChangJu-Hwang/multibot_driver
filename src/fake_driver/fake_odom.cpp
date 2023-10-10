@@ -1,4 +1,4 @@
-#include "multibot_driver/fake_odom.hpp"
+#include "fake_driver/fake_odom.hpp"
 
 #include <chrono>
 
@@ -47,6 +47,8 @@ void ISR_M2::FakeOdom::init_parameters()
     this->declare_parameter("namespace");
     this->declare_parameter(type + ".odometry.frame_id");
     this->declare_parameter(type + ".odometry.child_frame_id");
+
+    this->declare_parameter("use_gazebo_odom");
 
     this->get_parameter_or(type + ".wheels.separation",
                            wheel_seperation_, 0.0);

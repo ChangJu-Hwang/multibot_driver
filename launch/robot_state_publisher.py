@@ -21,10 +21,6 @@ def generate_launch_description():
 
     use_sim_time = LaunchConfiguration("use_sim_time", default='false')
 
-    x = LaunchConfiguration('x')
-    y = LaunchConfiguration('y')
-    Y = LaunchConfiguration('Y')
-
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',

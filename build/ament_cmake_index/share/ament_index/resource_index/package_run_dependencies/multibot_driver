@@ -1,1 +1,1 @@
-rclcpp;rclpy;geometry_msgs;nav_msgs;sensor_msgs;tf2_msgs;ros2launch;gazebo_ros;gazebo;gazebo_plugins;xacro
+rclcpp;rclpy;geometry_msgs;nav_msgs;sensor_msgs;tf2;tf2_ros;tf2_msgs;multibot_ros2_interface;ros2launch;gazebo_ros;gazebo;gazebo_plugins;xacro

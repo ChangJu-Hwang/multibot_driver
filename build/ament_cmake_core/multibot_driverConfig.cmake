@@ -16,7 +16,7 @@ set(_multibot_driver_CONFIG_INCLUDED TRUE)
 
 # output package information
 if(NOT multibot_driver_FIND_QUIETLY)
-  message(STATUS "Found multibot_driver: 0.1.0 (${multibot_driver_DIR})")
+  message(STATUS "Found multibot_driver: 0.2.0 (${multibot_driver_DIR})")
 endif()
 
 # warn when using a deprecated package
