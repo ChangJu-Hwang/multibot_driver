@@ -374,28 +374,30 @@ void ISR_M2::DeadReckoning(long dl, long dr)
     double r = 2.0 * M_PI * WHEEL_RADIUS_M / ENCODER_PPR / GEAR_RATIO;
     double del_dist_left_m_ = r * dl;
     double del_dist_right_m_ = r * dr;
-    auto diff = (cur_encoder_time_ - prev_encoder_time_).to_chrono<std::chrono::milliseconds>();
+    auto diff = (cur_encoder_time_ - prev_encoder_time_).to_chrono<std::chrono::milliseconds>().count() * 1e-3;
 
-    left_wheel_vel_endoer_mps_ = del_dist_left_m_ / diff.count();    // m/s
-    right_wheel_vel_encoder_mps_ = del_dist_right_m_ / diff.count(); // m/s
+    left_wheel_vel_endoer_mps_ = del_dist_left_m_ / diff;    // m/s
+    right_wheel_vel_encoder_mps_ = del_dist_right_m_ / diff; // m/s
 
-    velocity_.v = (del_dist_left_m_ + del_dist_right_m_) / 2.0;
-    velocity_.w = (del_dist_right_m_ - del_dist_left_m_) / WHEEL_BASE_M;
+    velocity_.v = (left_wheel_vel_endoer_mps_ + right_wheel_vel_encoder_mps_) / 2.0;
+    velocity_.w = (right_wheel_vel_encoder_mps_ - left_wheel_vel_endoer_mps_) / WHEEL_BASE_M;
 
     const auto &v = velocity_.v;
     const auto &w = velocity_.w;
 
     if (-0.001 > w || w > 0.001)
     {
-        position_.x += v / w * (sin(position_.theta + w) - sin(position_.theta));
-        position_.y -= v / w * (cos(position_.theta + w) - cos(position_.theta));
+        position_.x += v / w * (sin(position_.theta + w * diff) - sin(position_.theta));
+        position_.y -= v / w * (cos(position_.theta + w * diff) - cos(position_.theta));
     }
     else
     {
-        position_.x += v * cos(position_.theta);
-        position_.y += v * sin(position_.theta);
+        double ds = (del_dist_left_m_ + del_dist_right_m_) / 2.0;
+
+        position_.x += ds * cos(position_.theta);
+        position_.y += ds * sin(position_.theta);
     }
-    position_.theta += w;
+    position_.theta += w * diff;
 }
 
 bool ISR_M2::SendData(uint8_t command, uint8_t numparam, uint8_t *params)
